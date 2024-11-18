@@ -6,29 +6,29 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: jhooq-springboot
+      app: jhooq-springboot  # This selector ensures the Deployment's pods match the labels.
   template:
     metadata:
       labels:
-        app: jhooq-springboot
+        app: jhooq-springboot  # This label ensures the pods are matched by the service.
     spec:
       containers:
         - name: springboot
-          image: chethanvr06/chethan-docker-demo:chethan-docker-demo
+          image: chethanvr06/chethan-docker-demo:chethan-docker-demo  # Ensure this image exists and is publicly available.
           ports:
             - containerPort: 8080
           env:
             - name: PORT
-              value: "8080"
+              value: "8080"  # This sets the PORT environment variable in the container.
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: jhooq-springboot
 spec:
-  type: LoadBalancer
+  type: LoadBalancer  # This creates a load balancer for your service (if on a cloud provider like AWS or GCP).
   ports:
-    - port: 80
-      targetPort: 8080
+    - port: 80            # External port to access the service.
+      targetPort: 8080     # The container port that the service will forward traffic to.
   selector:
-    app: jhooq-springboot
+    app: jhooq-springboot  # This selector must match the labels of the pods in the deployment (fixed this part).
