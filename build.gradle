@@ -20,14 +20,22 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-jetty'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+    // Spring Boot Web Starter (for REST API development)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    
+    // Spring Boot Jetty Starter (for Jetty server support)
+    implementation 'org.springframework.boot:spring-boot-starter-jetty'
+    
+    // Lombok - Compile-time annotation processor for cleaner code
+    compileOnly 'org.projectlombok:lombok:1.18.24'  // Updated to latest Lombok version
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'  // Updated to latest Lombok version
+    
+    // Spring Boot Test Starter (for unit and integration testing)
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'  // Exclude JUnit Vintage
+    }
 }
+
 
 test {
 	useJUnitPlatform()
