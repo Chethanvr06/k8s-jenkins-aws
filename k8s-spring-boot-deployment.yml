@@ -16,10 +16,10 @@ spec:
         - name: springboot
           image: chethanvr06/chethan-docker-demo:chethan-docker-demo  # Ensure this image exists and is publicly available.
           ports:
-            - containerPort: 8080
+            - containerPort: 9002
           env:
             - name: PORT
-              value: "8080"  # This sets the PORT environment variable in the container.
+              value: "9002"  # This sets the PORT environment variable in the container.
 ---
 apiVersion: v1
 kind: Service
@@ -29,6 +29,6 @@ spec:
   type: LoadBalancer  # This creates a load balancer for your service (if on a cloud provider like AWS or GCP).
   ports:
     - port: 80            # External port to access the service.
-      targetPort: 8080     # The container port that the service will forward traffic to.
+      targetPort: 9002     # The container port that the service will forward traffic to.
   selector:
     app: jhooq-springboot  # This selector must match the labels of the pods in the deployment (fixed this part).
